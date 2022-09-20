@@ -1,18 +1,23 @@
 .jogo {
     width: 790px;
-    height: 780px;
+    height: 700px;
     margin:  80px auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    
 }
 
 .section1{
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 65%;
+    height: 70%;
+    position: relative;
 }
 
 .forca{
-    width: 70%;
+    width: 60%;
     height: 100%; 
 }
 
@@ -22,11 +27,10 @@ img{
 }
 
 .inicio{
-    width: 50%;
+    width: 40%;
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    position: relative;
 }
 
 .inicio button {
@@ -43,14 +47,25 @@ img{
     cursor: pointer;
 }
 
-.palavraEscolhida{
-    font-size: 40px;
+.palavraEscolhida {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     margin: 420px auto 0% auto;
+    
+}
+
+.palavraEscolhida > p {
+    font-size: 35px;
+    font-weight: bold;
+    margin: auto 5px;
 }
 
 .section2 {
     display: flex;
     flex-direction: column;
+    justify-content: center;
     width: 100%;
 }
 
@@ -58,7 +73,7 @@ img{
     display: flex;
     width: 90%;
     flex-wrap: wrap;
-    margin: 10px 60px;
+    margin: 20px 65px 15px 85px;
 }
 
 .section2 button{
@@ -76,17 +91,18 @@ img{
 .section2 button:hover{
     background-color:  #0080dc9f;
 }
-.section2 .desativado{
+
+/* .section2 .desativado{
     background-color: #046ab2d0;
     cursor: inherit;
 }
 .section2 .desativado:hover{
     background-color: #046ab2d0;
     cursor: inherit;
-}
+} */
 
 .chute{
-    margin: 5px auto;
+    margin: 10px auto;
     display: flex;
     align-items: center;
 }
