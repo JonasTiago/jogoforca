@@ -1,0 +1,110 @@
+.jogo {
+    width: 790px;
+    height: 780px;
+    margin:  80px auto;
+}
+
+.section1{
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    height: 65%;
+}
+
+.forca{
+    width: 70%;
+    height: 100%; 
+}
+
+img{
+    width: 85%;
+    height: 95%;
+}
+
+.inicio{
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.inicio button {
+    width: 200px;
+    height: 50px;
+    top: 30px;
+    right: 25px;
+    position: absolute;
+    background-color: rgba(3, 157, 3, 0.924);
+    color: white;
+    font-size: 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.palavraEscolhida{
+    font-size: 40px;
+    margin: 420px auto 0% auto;
+}
+
+.section2 {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.section2  > .alfabeto{
+    display: flex;
+    width: 90%;
+    flex-wrap: wrap;
+    margin: 10px 60px;
+}
+
+.section2 button{
+    margin: 3px;
+    width: 45px;
+    height: 45px;
+    background-color:  #E1ECF4;
+    color: #39739D;
+    font-size: 1em;
+    font-weight: bold;
+    text-transform: uppercase;
+    cursor: pointer;
+    border: 1px  #39739D solid;
+}
+.section2 button:hover{
+    background-color:  #0080dc9f;
+}
+.section2 .desativado{
+    background-color: #046ab2d0;
+    cursor: inherit;
+}
+.section2 .desativado:hover{
+    background-color: #046ab2d0;
+    cursor: inherit;
+}
+
+.chute{
+    margin: 5px auto;
+    display: flex;
+    align-items: center;
+}
+
+.chute p{
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.chute input{
+    width: 280px;
+    height: 30px;
+    margin-right: 10px;
+    font-size: 20px;
+}
+.section2 .chute > button{
+    width: 75px;
+    height: 40px;
+    font-size: 0.99em;
+    text-transform: none;
+}
