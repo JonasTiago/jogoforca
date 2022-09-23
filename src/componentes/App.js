@@ -78,7 +78,19 @@ export default function App() {
     }
 
     
-    
+    function acertou(l,testandoPalavra) {
+        const numAcertos = testandoPalavra.filter(le => le === l).length
+        const maximoDeAcertos = palavraEscolhida.length
+
+    //    setAcertos(acertos + numAcertos) 
+
+        acertos = acertos + numAcertos
+        
+        if (acertos === maximoDeAcertos) { 
+            setFimDoJogo('acertou')
+            setPalavra('')
+        }
+    }
 
 
     return (
