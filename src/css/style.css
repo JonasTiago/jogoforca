@@ -8,7 +8,7 @@
     
 }
 
-.section1{
+.primeiro-setor{
     display: flex;
     justify-content: space-between;
     width: 100%;
@@ -39,7 +39,7 @@ img{
     top: 30px;
     right: 25px;
     position: absolute;
-    background-color: rgba(3, 157, 3, 0.924);
+    background-color:#27AE60;
     color: white;
     font-size: 20px;
     border: none;
@@ -61,22 +61,28 @@ img{
     font-weight: bold;
     margin: auto 5px;
 }
+.palavraEscolhida  .errou{
+    color: red;
+}
+.palavraEscolhida .acertou{
+    color: green;
+}
 
-.section2 {
+.segundo-setor {
     display: flex;
     flex-direction: column;
     justify-content: center;
     width: 100%;
 }
 
-.section2  > .alfabeto{
+.segundo-setor  > .alfabeto{
     display: flex;
     width: 90%;
     flex-wrap: wrap;
     margin: 20px 65px 15px 85px;
 }
 
-.section2 button{
+.segundo-setor .alfabeto > button{
     margin: 3px;
     width: 45px;
     height: 45px;
@@ -88,18 +94,15 @@ img{
     cursor: pointer;
     border: 1px  #39739D solid;
 }
-.section2 button:hover{
+.segundo-setor .alfabeto button:hover{
     background-color:  #0080dc9f;
 }
 
-/* .section2 .desativado{
-    background-color: #046ab2d0;
+.segundo-setor .alfabeto button:disabled{
+    color: #79818F;
+    background-color: #9FAAB5;
     cursor: inherit;
 }
-.section2 .desativado:hover{
-    background-color: #046ab2d0;
-    cursor: inherit;
-} */
 
 .chute{
     margin: 10px auto;
@@ -118,9 +121,25 @@ img{
     margin-right: 10px;
     font-size: 20px;
 }
-.section2 .chute > button{
+.segundo-setor .chute > button{
+    background-color: #E1ECF4;
+    color: #39739D;
+    font-weight: bold;
+    border:1px #39739D solid;
     width: 75px;
     height: 40px;
     font-size: 0.99em;
     text-transform: none;
+    cursor: pointer;
 }
+
+.segundo-setor .chute > button:hover{
+    background-color: #badef8bc;
+}
+
+.segundo-setor .chute > button:disabled{
+    color: #79818F;
+    background-color: #9FAAB5;
+    cursor: inherit;
+}
+
