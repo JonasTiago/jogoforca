@@ -92,6 +92,21 @@ export default function App() {
         }
     }
 
+    function chutou() {
+        setNovoChute('')
+
+        if (novoChute.toString(',') === palavras[0].toString(',')) {
+            setFimDoJogo('acertou')
+            setPalavra('')
+            //setAcertos(acertos + (palavraEscolhida.length - 1))
+        } else {
+            setFimDoJogo('errou')
+            setPalavra('')
+            setLetraEscolhida([])
+            setImgErro(6)
+        }
+    }
+
 
     return (
         <div className="jogo">
