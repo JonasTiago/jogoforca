@@ -24,7 +24,7 @@ export default function App() {
 
         palavras.sort(() => Math.random() - 0.5)
         const palavraSorteada = [...palavras[0]]
-        console.log(palavraSorteada)
+
         setImgErro(0)
         setLetraEscolhida([])
         setFimDoJogo()
@@ -154,7 +154,7 @@ export default function App() {
                 <div className="chute">
                     {palavraEscolhida ?
                         <>
-                            <p>Já sei a palavra!</p>
+                            <p>Já sei a palavra! </p>
                             <label>
                                 <input type="text"
                                     onChange={(e) => setNovoChute(e.target.value)}
