@@ -8,16 +8,16 @@ import img4 from "../assets/img/forca4.png"
 import img5 from "../assets/img/forca5.png"
 import img6 from "../assets/img/forca6.png"
 
-let acertos = 0
+
 export default function App() {
     const alfabeto = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"]
     const forca = [img0, img1, img2, img3, img4, img5, img6]
 
-    const [palavraEscolhida, setPalavra] = useState('')
+    const [palavraEscolhida, setPalavra] = useState()
     const [letraEscolhida, setLetraEscolhida] = useState([])
     const [imgErro, setImgErro] = useState(0)
     const [fimDeJogo, setFimDoJogo] = useState()
-   /*const [acertosF, setAcertosF] = useState(acertos)*/
+    const [acertos, setAcertos] = useState(0)
     const [novoChute, setNovoChute] = useState('')
 
     function iniciar() {
@@ -28,8 +28,7 @@ export default function App() {
         setImgErro(0)
         setLetraEscolhida([])
         setFimDoJogo()
-        acertos = 0;
-        // setAcertos(0)
+        setAcertos(0)
 
         setPalavra(
             palavraSorteada
@@ -64,29 +63,28 @@ export default function App() {
 
         const testandoPalavra = palavraEscolhida.toString('').replace(/[áã]/gi, 'a').replace(/[éê]/gi, 'e').replace(/[í]/gi, 'i').replace(/[óô]/gi, 'o').replace(/[ú]/gi, 'u').replace(/[ç]/gi, 'c').split(',')
 
-        testandoPalavra.includes(letra) ? acertou(letra,testandoPalavra) : errou()         
+        testandoPalavra.includes(letra) ? acertou(letra, testandoPalavra) : errou()
     }
 
     function errou() {
-        setImgErro(imgErro + 1)
-        const maxErro = 5;
+        const novoErro = imgErro + 1
+        setImgErro(novoErro)
+        const maxErro = 6;
 
-        if (imgErro === maxErro) {
+        if (novoErro === maxErro) {
             setFimDoJogo('errou')
             setPalavra('')
         }
     }
 
-    
-    function acertou(l,testandoPalavra) {
+    function acertou(l, testandoPalavra) {
         const numAcertos = testandoPalavra.filter(le => le === l).length
         const maximoDeAcertos = palavraEscolhida.length
+        const acertosTotal = acertos + numAcertos
 
-    //    setAcertos(acertos + numAcertos) 
+        setAcertos(acertosTotal)
 
-        acertos = acertos + numAcertos
-        
-        if (acertos === maximoDeAcertos) { 
+        if (acertosTotal === maximoDeAcertos) {
             setFimDoJogo('acertou')
             setPalavra('')
         }
@@ -98,7 +96,7 @@ export default function App() {
         if (novoChute.toString(',') === palavras[0].toString(',')) {
             setFimDoJogo('acertou')
             setPalavra('')
-            //setAcertos(acertos + (palavraEscolhida.length - 1))
+
         } else {
             setFimDoJogo('errou')
             setPalavra('')
@@ -107,67 +105,56 @@ export default function App() {
         }
     }
 
-
     return (
         <div className="jogo">
             <div className="primeiro-setor">
                 <div className="forca" >
-                    <img src={forca[imgErro]} alt="forca" />
+                    <img src={forca[imgErro]} alt="forca" data-identifier="game-image" />
                 </div>
                 <div className="inicio">
-                    <button onClick={iniciar}>Escolher Palavra</button>
-                    <span className="palavraEscolhida">
+                    <button onClick={iniciar} data-identifier="choose-word">Escolher Palavra</button>
+                    <span className="palavraEscolhida" data-identifier="word">
                         {!fimDeJogo ?
-                            palavraEscolhida &&
-                            palavraEscolhida.map((l, index) =>
-                                letraEscolhida.includes(l) ?
-                                    <p key={index} >{l}</p> :
-                                    <p key={index} >{'_'}</p>)
+                            (palavraEscolhida &&
+                                palavraEscolhida.map((l, index) =>
+                                    <p key={index} >{letraEscolhida.includes(l) ? l : '_'}</p>))
                             :
-                            fimDeJogo && [...palavras[0]].map((l, index) => <p key={index} className={fimDeJogo} >{l}</p>)
+                            (fimDeJogo && [...palavras[0]].map((l, index) => <p key={index} className={fimDeJogo} >{l}</p>))
                         }
                     </span>
                 </div>
             </div>
             <div className="segundo-setor">
                 <div className="alfabeto">
-                    {palavraEscolhida.length !== 0 ?
-                        (alfabeto.map((le, index) =>
-                            letraEscolhida.includes(le) ?
-                                <button
-                                    key={index}
-                                    disabled={true}>
-                                    {le}
-                                </button> :
-                                <button onClick={() => palpite(le)}
-                                    key={index}>
-                                    {le}
-                                </button>)) :
+                    {
                         alfabeto.map((le, index) =>
                             <button
+                                onClick={() => palpite(le)}
                                 key={index}
-                                disabled={true}>
+                                disabled={!palavraEscolhida ?
+                                    true :
+                                    (letraEscolhida.includes(le) && true)}
+                                data-identifier="letter"
+                            >
                                 {le}
                             </button>)
                     }
                 </div>
                 <div className="chute">
-                    {palavraEscolhida ?
+                    {
                         <>
-                            <p>Já sei a palavra! </p>
+                            <p>Já sei a palavra!</p>
                             <label>
                                 <input type="text"
-                                    onChange={(e) => setNovoChute(e.target.value)}
+                                    onChange={(e) => setNovoChute(e.target.value.toLowerCase())}
                                     value={novoChute}
+                                    disabled={!palavraEscolhida}
+                                    data-identifier="type-guess"
                                 />
                             </label>
-                            <button onClick={chutou} >chutar</button>
-                        </>
-                        :
-                        <>
-                            <p>Já sei a palavra! </p>
-                            <input type="text" disabled />
-                            <button disabled>chutar</button>
+                            <button onClick={chutou} disabled={!palavraEscolhida} data-identifier="guess-button">
+                                chutar
+                            </button>
                         </>
                     }
                 </div>
