@@ -1,4 +1,14 @@
-.jogo {
+* {
+    margin: 0;
+    padding: 0;
+    width: 100vw;
+    background-color: blue;
+    height: 100vh;
+    /* font-family: 'Roboto', sans-serif; */
+    background-color: #f5f5f5;
+}
+
+/* .jogo {
     width: 790px;
     height: 700px;
     margin:  80px auto;
@@ -121,6 +131,7 @@ img{
     margin-right: 10px;
     font-size: 20px;
 }
+
 .segundo-setor .chute > button{
     background-color: #E1ECF4;
     color: #39739D;
@@ -142,4 +153,4 @@ img{
     background-color: #9FAAB5;
     cursor: inherit;
 }
-
+ */

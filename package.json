@@ -3,31 +3,47 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-scripts": "^4.0.3"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-scripts": "^5.0.1",
+    "styled-components": "^6.1.13"
+  },
+  "devDependencies": {
+    "@babel/eslint-parser": "^7.22.9",
+    "eslint": "^8.44.0",
+    "prettier": "^3.0.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "lint": "eslint 'src/**/*.{js,jsx}'",
+    "format": "prettier --write 'src/**/*.{js,jsx}'"
   },
   "eslintConfig": {
+    "parser": "@babel/eslint-parser",
     "extends": [
-      "react-app"
-    ]
+      "react-app",
+      "plugin:react/recommended"
+    ],
+    "settings": {
+      "react": {
+        "version": "detect"
+      }
+    }
   },
   "browserslist": {
     "production": [
-      ">0.2%",
+      ">0.5%",
       "not dead",
-      "not op_mini all"
+      "not op_mini all",
+      "not ie 11"
     ],
     "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
+      "last 2 chrome versions",
+      "last 2 firefox versions",
+      "last 2 safari versions"
     ]
   }
 }
