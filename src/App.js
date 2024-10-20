@@ -8,7 +8,7 @@ import Chute from './components/Chute.js';
 
 export default function App() {
   const [inicioDoJogo, setInicioDoJogo] = useState(false);
-  const [fimDeJogo, setFimDoJogo] = useState(false);
+  const [fimDeJogo, setFimDoJogo] = useState(true);
 
   const [palavra, setPalavra] = useState();
 
@@ -20,49 +20,12 @@ export default function App() {
   const [novoChute, setNovoChute] = useState('');
 
   function iniciar() {
-    // setLetraEscolhida([]);
-    setInicioDoJogo(!inicioDoJogo);
-    // setFimDoJogo();
-    // setAcertos(0);
+    setInicioDoJogo(true);
+    setFimDoJogo(!fimDeJogo);
+    setLetraEscolhida([]);
+    setImgErro(0)
+
   }
-
-  //   function palpite(letra) {
-  //     switch (letra) {
-  //       case 'a':
-  //         setLetraEscolhida([...letraEscolhida, 'á', 'ã', 'a']);
-  //         break;
-  //       case 'e':
-  //         setLetraEscolhida([...letraEscolhida, 'é', 'ê', 'e']);
-  //         break;
-  //       case 'i':
-  //         setLetraEscolhida([...letraEscolhida, 'í', 'i']);
-  //         break;
-  //       case 'o':
-  //         setLetraEscolhida([...letraEscolhida, 'ó', 'ô', 'o']);
-  //         break;
-  //       case 'u':
-  //         setLetraEscolhida([...letraEscolhida, 'ú', 'u']);
-  //         break;
-  //       case 'c':
-  //         setLetraEscolhida([...letraEscolhida, 'ç', 'c']);
-  //         break;
-  //       default:
-  //         setLetraEscolhida([...letraEscolhida, letra]);
-  //         break;
-  //     }
-
-  //     const testandoPalavra = palavra
-  //       .toString('')
-  //       .replace(/[áã]/gi, 'a')
-  //       .replace(/[éê]/gi, 'e')
-  //       .replace(/[í]/gi, 'i')
-  //       .replace(/[óô]/gi, 'o')
-  //       .replace(/[ú]/gi, 'u')
-  //       .replace(/[ç]/gi, 'c')
-  //       .split(',');
-
-  //     testandoPalavra.includes(letra) ? acertou(letra, testandoPalavra) : errou();
-  //   }
 
   function errou() {
     const novoErro = imgErro + 1;
@@ -70,8 +33,10 @@ export default function App() {
     const maxErro = 6;
 
     if (novoErro === maxErro) {
+      setInicioDoJogo(!inicioDoJogo);
       setFimDoJogo(!fimDeJogo);
-      // setPalavra('');
+      setLetraEscolhida([]);
+      // setImgErro(0)
     }
   }
 
@@ -83,34 +48,21 @@ export default function App() {
     setAcertos(acertosTotal);
 
     if (acertosTotal === maximoDeAcertos) {
-      setFimDoJogo('acertou');
-      // setPalavra('');
+      setInicioDoJogo(!inicioDoJogo);
+      setFimDoJogo(!fimDeJogo);
+      // setLetraEscolhida([]);
+      setImgErro(0)
     }
   }
-
-  // function chutou() {
-  //   setNovoChute('');
-
-  //   if (novoChute.toString(',') === palavras[0].toString(',')) {
-  //     setFimDoJogo('acertou');
-  //     setPalavra('');
-  //   } else {
-  //     setFimDoJogo('errou');
-  //     setPalavra('');
-  //     setLetraEscolhida([]);
-  //     setImgErro(6);
-  //   }
-  // }
 
   return (
     <JogoStyle>
       <PrimeiroSetorStyle>
         <Forca imgErro={imgErro} />
         <InicioStyle>
-          <button onClick={iniciar} disabled={inicioDoJogo}>
-            Escolher Palavra
-          </button>
-          {inicioDoJogo ? (
+            <button onClick={iniciar} disabled={inicioDoJogo}>Escolher Palavra</button>
+           
+          {inicioDoJogo || imgErro === 6 || acertos === palavra?.length ? (
             <Palavra
               fimDeJogo={fimDeJogo}
               inicioDoJogo={inicioDoJogo}

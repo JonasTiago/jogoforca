@@ -14,20 +14,20 @@ export default function Alfabeto({
 }) {
   const alfabeto = alfabetoFull;
 
-  useEffect(() => {
-    const handleKeyPress = (event) => {
-      const letra = event.key.toLowerCase();
-      if (alfabeto.includes(letra) && !letraEscolhida.includes(letra)) {
-      palpite(letra);
-      }
-    };
+  // useEffect(() => {
+  //   const handleKeyPress = (event) => {
+  //     const letra = event.key.toLowerCase();
+  //     if (alfabeto.includes(letra) && !letraEscolhida.includes(letra)) {
+  //     palpite(letra);
+  //     }
+  //   };
 
-    window.addEventListener('keydown', handleKeyPress);
+  //   window.addEventListener('keydown', handleKeyPress);
 
-    return () => {
-      window.removeEventListener('keydown', handleKeyPress);
-    };
-  }, [letraEscolhida]);
+  //   return () => {
+  //     window.removeEventListener('keydown', handleKeyPress);
+  //   };
+  // }, [letraEscolhida]);
 
   function palpite(letra) {
     switch (letra) {
@@ -69,12 +69,12 @@ export default function Alfabeto({
 
   return (
     <AlfabetoStyle>
-      {inicioDoJogo
+      {inicioDoJogo 
         ? alfabeto.map((le, index) => (
             <button
               onClick={() => palpite(le)}
               key={index}
-              disabled={!inicioDoJogo ? true : letraEscolhida.includes(le) && true}
+              disabled={letraEscolhida.includes(le) && true}
             >
               {le}
             </button>
@@ -83,9 +83,9 @@ export default function Alfabeto({
             <button
               onClick={() => palpite(le)}
               key={index}
-              disabled={!fimDeJogo}
+              disabled={true}
             >
-              {le}.
+              {le}
             </button>
           ))}
     </AlfabetoStyle>
